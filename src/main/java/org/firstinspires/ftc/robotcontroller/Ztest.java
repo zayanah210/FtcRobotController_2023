@@ -1,8 +1,12 @@
 package org.firstinspires.ftc.robotcontroller;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+
+import org.openftc.easyopencv.PipelineRecordingParameters;
 
 @Autonomous(name="Ztest", group="Example")
 public class Ztest extends LinearOpMode {
@@ -12,6 +16,7 @@ public class Ztest extends LinearOpMode {
     DcMotor rightFront;
     DcMotor leftFront;
 
+
     @Override
     public void runOpMode() throws InterruptedException {
         //retrieves motors from hardware map
@@ -19,6 +24,12 @@ public class Ztest extends LinearOpMode {
         rightRear = hardwareMap.dcMotor.get("rightRear");
         rightFront = hardwareMap.dcMotor.get("rightFront");
         leftFront = hardwareMap.dcMotor.get("leftFront");
+
+
+        leftRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         leftRear.setDirection(DcMotor.Direction.REVERSE);
         leftFront.setDirection(DcMotor.Direction.REVERSE);
